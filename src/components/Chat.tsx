@@ -1,3 +1,6 @@
+import type { ReactNode } from "react";
+
+
 // TODO:Update these types
 
 // type Chat = {
@@ -7,8 +10,12 @@
 //   content: Chat[];
 // }
 
-const Chat = () => {
-  return <div>Chat text</div>;
+interface ChatProps {
+  children: ReactNode;
+}
+
+const Chat = ({children}:ChatProps ) => {
+ return <div className="chat">{children}</div>;
 };
 
 export default Chat;
