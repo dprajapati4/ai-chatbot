@@ -1,5 +1,5 @@
 import Button from "./Button";
-
+import TextArea from "./TextArea";
 interface SearchBarProps {
   inputValue: string;
   handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -14,15 +14,15 @@ const SearchBar = ({
   handleKeyDown
 }: SearchBarProps) => {
   return (
-    <div>
-      <textarea
+    <div className="searchbar-container">
+      <TextArea 
         className="search-input"
-        placeholder="Enter your text"
-        value={inputValue}
+        placeholder="Ask me anything"
+        inputValue={inputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <Button textContent="Send" handleClick={handleSubmit} />
+      <Button textContent="Ask" handleClick={handleSubmit} />
     </div>
   );
 };
