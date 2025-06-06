@@ -1,9 +1,10 @@
 import Groq from "groq-sdk";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import ChatBoxContainer from "./components/ChatBoxContainer";
 import Chat from "./components/Chat";
 import Header from "./components/Header";
+import Button from "./components/Button";
 import SearchBar from "./components/SearchBar";
 
 const groq = new Groq({
@@ -15,26 +16,47 @@ interface ChatMessage {
   prompt: string;
   response: string;
 }
+interface AppState {
+  inputValue: string;
+  chatMessages: ChatMessage[];
+  isChatVisible: boolean;
+  isHeadersVisible: boolean;
+}
 
 function App() {
-  const [inputValue, setInputValue] = useState("");
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [state, setState] = useState<AppState>(() => {
+    const localValue = localStorage.getItem("appState");
+    if (localValue === null) {
+      return {
+        inputValue: "",
+        chatMessages: [],
+        isChatVisible: false,
+        isHeadersVisible: true,
+      };
+    }
+    return JSON.parse(localValue);
+  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInputValue(e.target.value);
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setState((prevState) => ({
+      ...prevState,
+      inputValue: event.target.value,
+    }));
   };
 
-  const handleSubmit = async () => {
-    if (inputValue.trim() === "") return;
+  const noChatPrompt = state.inputValue.trim() === "";
 
-    const chatPrompt = `You: ${inputValue}`;
+  const handleSubmit = async () => {
+    if (noChatPrompt) return;
+
+    const chatPrompt = `You: ${state.inputValue}`;
 
     try {
       const chatCompletion = await groq.chat.completions.create({
         messages: [
           {
             role: "user",
-            content: inputValue,
+            content: state.inputValue,
           },
         ],
         model: "llama3-8b-8192",
@@ -48,7 +70,13 @@ function App() {
         response: responseContent,
       };
 
-      setChatMessages([...chatMessages, newChatMessage]);
+      setState((prevState) => ({
+        ...prevState,
+        chatMessages: [...prevState.chatMessages, newChatMessage],
+        isChatVisible: true,
+        isHeadersVisible: false,
+        inputValue: "",
+      }));
     } catch (error) {
       console.error("Error fetching chat completion:", error);
       const errorMessage = "Error fetching chat completion";
@@ -56,37 +84,63 @@ function App() {
         prompt: chatPrompt,
         response: errorMessage,
       };
-      setChatMessages([...chatMessages, newChatMessage]);
-    } finally {
-      setInputValue("");
+      setState((prevState) => ({
+        ...prevState,
+        chatMessages: [...prevState.chatMessages, newChatMessage],
+        isChatVisible: true,
+        isHeadersVisible: false,
+        inputValue: "",
+      }));
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
+  const handleClearChat = () => {
+    setState((prevState) => ({
+      ...prevState,
+      chatMessages: [],
+      isChatVisible: false,
+      isHeadersVisible: true,
+      inputValue: "",
+    }));
+
+    localStorage.removeItem("appState");
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
       handleSubmit();
     }
   };
 
+  useEffect(() => {
+    localStorage.setItem("appState", JSON.stringify(state));
+  }, [state]);
+
+  const { isHeadersVisible, isChatVisible, inputValue, chatMessages } = state;
   return (
     <ChatBoxContainer>
       <div>Deep's Chat Box</div>
-      <Header />
+      {isHeadersVisible && <Header />}
       <SearchBar
         inputValue={inputValue}
         handleChange={handleInputChange}
         handleSubmit={handleSubmit}
         handleKeyDown={handleKeyDown}
       />
-      <Chat>
-        {chatMessages.map((message, i) => (
-          <div key={i} className="chat-message">
-            <div className="chat-prompt">{message.prompt}</div>
-            <div className="chat-response">{message.response}</div>
-          </div>
-        ))}
-      </Chat>
+      {isChatVisible && (
+        <div className="chat-container">
+          <Chat>
+            {chatMessages.map((message, i) => (
+              <div key={i} className="chat-message">
+                <div className="chat-prompt">{message.prompt}</div>
+                <div className="chat-response">{message.response}</div>
+              </div>
+            ))}
+            <Button textContent="Clear Chat" handleClick={handleClearChat} />
+          </Chat>
+        </div>
+      )}
     </ChatBoxContainer>
   );
 }
