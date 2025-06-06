@@ -4,7 +4,7 @@ interface ChatBoxContainerProps {
   children: ReactNode;
 }
 const ChatBoxContainer = ({ children }: ChatBoxContainerProps) => {
-  return <div className="app-name">{children}</div>;
+  return <div className="chatbox-container">{children}</div>;
 };
 
 export default ChatBoxContainer;

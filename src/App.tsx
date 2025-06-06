@@ -120,7 +120,9 @@ function App() {
   const { isHeadersVisible, isChatVisible, inputValue, chatMessages } = state;
   return (
     <ChatBoxContainer>
-      <div>Deep's Chat Box</div>
+      <div className="logo">
+        <div className="logo-icon">✨</div>
+      </div>
       {isHeadersVisible && <Header />}
       <SearchBar
         inputValue={inputValue}
