@@ -4,8 +4,8 @@ import "./App.css";
 import ChatBoxContainer from "./components/ChatBoxContainer";
 import Chat from "./components/Chat";
 import Header from "./components/Header";
-import Button from "./components/Button";
 import SearchBar from "./components/SearchBar";
+import Logo from "./components/Logo";
 
 const groq = new Groq({
   apiKey: import.meta.env.VITE_REACT_APP_GROQ_API_KEY,
@@ -120,29 +120,17 @@ function App() {
   const { isHeadersVisible, isChatVisible, inputValue, chatMessages } = state;
   return (
     <ChatBoxContainer>
-      <div className="logo">
-        <div className="logo-icon">✨</div>
-      </div>
+      <Logo />
       {isHeadersVisible && <Header />}
+        {isChatVisible && (
+        <Chat chatMessages={chatMessages} handleClearChat={handleClearChat} />
+      )}
       <SearchBar
         inputValue={inputValue}
         handleChange={handleInputChange}
         handleSubmit={handleSubmit}
         handleKeyDown={handleKeyDown}
       />
-      {isChatVisible && (
-        <div className="chat-container">
-          <Chat>
-            {chatMessages.map((message, i) => (
-              <div key={i} className="chat-message">
-                <div className="chat-prompt">{message.prompt}</div>
-                <div className="chat-response">{message.response}</div>
-              </div>
-            ))}
-            <Button textContent="Clear Chat" handleClick={handleClearChat} />
-          </Chat>
-        </div>
-      )}
     </ChatBoxContainer>
   );
 }
