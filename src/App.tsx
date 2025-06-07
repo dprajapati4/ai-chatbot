@@ -123,13 +123,14 @@ function App() {
       <Logo />
       {isHeadersVisible && <Header />}
         {isChatVisible && (
-        <Chat chatMessages={chatMessages} handleClearChat={handleClearChat} />
+        <Chat chatMessages={chatMessages}/>
       )}
       <SearchBar
         inputValue={inputValue}
         handleChange={handleInputChange}
         handleSubmit={handleSubmit}
         handleKeyDown={handleKeyDown}
+        handleClearChat={handleClearChat}
       />
     </ChatBoxContainer>
   );

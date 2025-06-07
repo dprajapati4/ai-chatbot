@@ -5,6 +5,7 @@ interface ButtonProps {
   handleClick: () => void;
   disabled?: boolean;
   ariaLabel: string;
+  className?: string;
   size?: "small" | "medium" | "large";
 }
 
@@ -13,6 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   handleClick,
   disabled = false,
   ariaLabel,
+  className,
   size = "medium",
 }) => {
   const buttonSize =
@@ -23,6 +25,7 @@ const Button: React.FC<ButtonProps> = ({
       aria-label={ariaLabel}
       type="submit"
       onClick={handleClick}
+      className={className}
       disabled={disabled}
       style={{
         width: buttonSize,

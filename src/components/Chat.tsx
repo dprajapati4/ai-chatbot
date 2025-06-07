@@ -1,9 +1,5 @@
-import Button from "./Button";
-import { FaRegTrashCan } from "react-icons/fa6";
-
 interface ChatProps {
   chatMessages: ChatMessage[];
-  handleClearChat: () => void;
 }
 
 type ChatMessage = {
@@ -11,7 +7,7 @@ type ChatMessage = {
   response: string;
 };
 
-const Chat = ({ chatMessages, handleClearChat }: ChatProps) => {
+const Chat = ({ chatMessages }: ChatProps) => {
   return (
     <div className="chat-container">
       <div className="messages">
@@ -22,10 +18,6 @@ const Chat = ({ chatMessages, handleClearChat }: ChatProps) => {
           </div>
         ))}
       </div>
-
-      <Button ariaLabel="clear chat" size="large" handleClick={handleClearChat}>
-        <FaRegTrashCan />
-      </Button>
     </div>
   );
 };
