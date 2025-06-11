@@ -21,14 +21,14 @@ const SearchBar = ({
     <div className="searchbar-container">
       <TextArea
         className="search-input"
-        placeholder="Ask me anything"
+        placeholder="Ask me anything..."
         inputValue={inputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
       <Button
         handleClick={handleSubmit}
-        ariaLabel="ask"
+        ariaLabel="Send prompt"
         disabled={inputValue.length > 0 ? false : true}
       >
         {<FaArrowCircleUp />}

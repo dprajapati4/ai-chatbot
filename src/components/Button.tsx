@@ -27,6 +27,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={handleClick}
       className={className}
       disabled={disabled}
+      title={ariaLabel}
       style={{
         width: buttonSize,
         height: buttonSize,
