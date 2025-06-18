@@ -115,7 +115,30 @@
 
 .chat-response {
   color: #555;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 1rem;
+  font-family: "Segoe UI", sans-serif;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 8px;
+  max-width: 600px;
+}
+
+.chat-response p {
+  margin-bottom: 1rem;
+}
+
+.chat-response ol {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.chat-response li {
+  margin-bottom: 1rem;
+}
+
+.chat-response strong {
+  color: #333;
 }
 
 .messages::-webkit-scrollbar {

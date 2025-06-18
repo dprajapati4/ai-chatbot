@@ -55,6 +55,15 @@ function App() {
       const chatCompletion = await groq.chat.completions.create({
         messages: [
           {
+            role: "system",
+            content: `You are a helpful and friendly chatbot. Please format your responses for clear readability:
+              - Use **bold** for important terms, names, and key concepts
+              - Create numbered lists for step-by-step information or rankings
+              - Use bullet points for general lists
+              - Keep paragraphs short and focused
+              - Separate different topics with line breaks`,
+          },
+          {
             role: "user",
             content: state.inputValue,
           },
@@ -122,9 +131,7 @@ function App() {
     <ChatBoxContainer>
       <Logo />
       {isHeadersVisible && <Header />}
-        {isChatVisible && (
-        <Chat chatMessages={chatMessages}/>
-      )}
+      {isChatVisible && <Chat chatMessages={chatMessages} />}
       <SearchBar
         inputValue={inputValue}
         handleChange={handleInputChange}
