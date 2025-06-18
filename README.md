@@ -1,54 +1,106 @@
-# React + TypeScript + Vite
+# AI Chatbot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React-based AI chatbot application powered by Groq's fast inference API. Built with TypeScript and Vite for optimal performance and developer experience.
 
-Currently, two official plugins are available:
+  <div style="flex: 1; max-width: 400px;">
+    <img src="./src/assets/homepage.png" alt="Ghibli Recipe Book Homepage" width="400">
+  </div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 🤖 AI-powered conversations using Groq SDK
+- ⚡ Lightning-fast responses with Groq's LPU inference
+- 🎨 Modern React UI
+- 📱 Responsive design for all devices
+- 🔧 TypeScript for type safety
+- ⚡ Vite for fast development and building
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Frontend**: React 19.1.0 with TypeScript
+- **AI Provider**: Groq SDK for fast LLM inference
+- **Icons**: React Icons for beautiful UI elements
+- **Build Tool**: Vite for fast development
+
+## Prerequisites
+
+Before running this project, make sure you have:
+
+- Node.js (version 16 or higher)
+- npm or yarn package manager
+- A Groq API key - create your own [here](https://console.groq.com)
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone <your-repo-url>
+cd ai-chatbot
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
 ```
+
+3. Create a `.env` file in the root directory and add your Groq API key:
+
+```env
+VITE_GROQ_API_KEY=your_groq_api_key_here
+```
+
+## Usage
+
+### Development
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### Build
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+### Preview
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+### Linting
+
+Run ESLint to check code quality:
+
+```bash
+npm run lint
+```
+
+## Groq Integration
+
+This chatbot uses Groq's SDK for fast AI inference. Groq provides:
+
+- Ultra-fast response times with LPU technology
+- Support for popular open-source models
+- Simple REST API integration
+- Cost-effective AI inference
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Connect with me
+
+[LinkedIn](https://www.linkedin.com/in/deepprajapati) -
+[Github](https://github.com/dprajapati4/)
