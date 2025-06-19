@@ -2,11 +2,11 @@
 
 A modern React-based AI chatbot application powered by Groq's fast inference API. Built with TypeScript and Vite for optimal performance and developer experience.
 
-  <div align="center" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-  <div style="flex: 1; max-width: 400px;">
+  <div align="center" style="display: flex; justify-content: center; align-items:center;gap: 10px; flex-wrap: wrap;">
+  <div style="flex: 1; max-width: 400px; border:2px solid black;">
     <img src="./src/assets/homepage.png" alt="Chatbot Homepage" width="400">
   </div>
-  <div style="flex: 1; max-width: 400px border:2px solid;">
+  <div style="flex: 1; max-width: 400px border:2px solid black;">
     <img src="./src/assets/response.png" alt="Chat bot response" width="400">
    
   </div>
