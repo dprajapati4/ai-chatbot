@@ -6,7 +6,7 @@ A modern React-based AI chatbot application powered by Groq's fast inference API
   <div style="flex: 1; max-width: 400px; border:2px solid black;">
     <img src="./src/assets/homepage.png" alt="Chatbot Homepage" width="400">
   </div>
-  <div style="flex: 1; max-width: 400px border:2px solid black;">
+  <div style="flex: 1; max-width: 400px; border:2px solid black;">
     <img src="./src/assets/response.png" alt="Chat bot response" width="400">
    
   </div>
