@@ -1,6 +1,6 @@
 # AI Chatbot
 
-A modern React-based AI chatbot application powered by Groq's fast inference API. Built with TypeScript and Vite for optimal performance and developer experience.
+An AI chatbot powered by Groq's fast inference API. Built with TypeScript and Vite.
 
   <div align="center" style="display: flex; justify-content: center; align-items:center;gap: 10px; flex-wrap: wrap;">
   <div style="flex: 1; max-width: 400px; border:2px solid black;">
@@ -23,9 +23,8 @@ A modern React-based AI chatbot application powered by Groq's fast inference API
 
 ## Tech Stack
 
-- **Frontend**: React 19.1.0 with TypeScript
+- **Frontend**: React 19.1.0 with TypeScript and styled with native CSS
 - **AI Provider**: Groq SDK for fast LLM inference
-- **Icons**: React Icons for beautiful UI elements
 - **Build Tool**: Vite for fast development
 
 ## Prerequisites
